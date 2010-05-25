@@ -34,6 +34,17 @@ public class Parallel implements Runnable {
 		Thread t1 = new Thread(new Parallel(c1,1));
 		Thread t2 = new Thread(new Parallel(c2,2));
 		
+		System.out.println("auf Schwarz stellen und Enter");
+		
+		Button.ENTER.waitForPress();
+		c1.initBlackLevel();
+		c2.initBlackLevel();
+		
+		LCD.clear();
+		System.out.println("Kalibriert bitte Enter");
+		Button.ENTER.waitForPress();
+		
+		
 		t1.start();
 		t2.start();
 		

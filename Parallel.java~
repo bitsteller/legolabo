@@ -30,8 +30,6 @@ public class Parallel implements Runnable {
 	public static void main(String[] args){
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
-		c1.initBlackLevel();
-		c2.initBlackLevel();
 		
 		Thread t1 = new Thread(new Parallel(c1,1));
 		Thread t2 = new Thread(new Parallel(c2,2));
