@@ -22,18 +22,8 @@ public class Parallel implements Runnable {
 		}
 	}
 
-	public Parallel(ColorSensor cs, int tNo){
-		this.cs = cs;
-		this.tNo = tNo;
-	}
-	
-	public static void main(String[] args){
-		ColorSensor c1 = new ColorSensor(SensorPort.S2);
-		ColorSensor c2 = new ColorSensor(SensorPort.S3);
-		
-		Thread t1 = new Thread(new Parallel(c1,1));
-		Thread t2 = new Thread(new Parallel(c2,2));
-		
+	public static void kalibrieren(ColorSensor c1, ColorSensor c2) {
+
 		// BlackBalance
 
 		System.out.println("auf Schwarz stellen und Enter");
@@ -61,7 +51,24 @@ public class Parallel implements Runnable {
 		LCD.clear();
 		System.out.println("Kalibriert bitte Enter");
 		Button.ENTER.waitForPress();
-		
+
+	}
+
+	public Parallel(ColorSensor cs, int tNo){
+		this.cs = cs;
+		this.tNo = tNo;
+	}
+	
+	public static void main(String[] args){
+
+		ColorSensor c1 = new ColorSensor(SensorPort.S2);
+		ColorSensor c2 = new ColorSensor(SensorPort.S3);
+
+		kalibrieren(c1,c2);
+
+		Thread t1 = new Thread(new Parallel(c1,1));
+		Thread t2 = new Thread(new Parallel(c2,2));
+
 		t1.start();
 		t2.start();
 		
