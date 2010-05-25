@@ -1,17 +1,25 @@
 import lejos.nxt.*;
+import lejos.nxt.addon.*;
 public class Parallel implements Runnable {
 
 	private ColorSensor cs;
 	private int tNo;
 	
 
-	public void run(){
+	public void run() {
 		while(!Button.ENTER.isPressed()){
-		 	if(tNo = 1) {
+			LCD.clearDisplay();
+		 	if(tNo == 1) {
 				LCD.drawString("Wert1: " + cs.getColorNumber() , 0, 0);
-			} else if (tNo = 2) {
-				LCD.drawString("Wert2: " + cs.getColorNumber() , 0, 5);
+			} else if (tNo == 2) {
+				LCD.drawString("Wert2: " + cs.getColorNumber() , 0, 2);
 			}
+			try {
+				Thread.sleep(200);
+			}
+			catch(InterruptedException e) {
+			}
+		}
 	}
 
 	public Parallel(ColorSensor cs, int tNo){
@@ -29,7 +37,7 @@ public class Parallel implements Runnable {
 		t1.start();
 		t2.start();
 		
-		System.out.Println("Wollen sie beenden?");
+		System.out.println("Wollen sie beenden?");
 		Button.ENTER.waitForPress();
 	}
 }
