@@ -7,7 +7,6 @@ public class linie2 {
 
 	public static void run() {
 		while(!Button.ESCAPE.isPressed()){
-			if (Button.ENTER.isPressed()) {
 				Motor.C.stop();
 				moveToNextCrossing();
 				System.out.println("Kreuzung!");
@@ -35,8 +34,6 @@ public class linie2 {
 						break;
 					}
 				}
-
-			}
 		}
 	}
 	
@@ -87,7 +84,7 @@ public class linie2 {
 		Motor.B.stop();
 		
 		if (direction == -1) {
-			Motor.A.rotate(270);
+			Motor.A.rotate(300);
 			while(isBlack(c2)){
 				Motor.A.forward();
 			}
@@ -95,7 +92,7 @@ public class linie2 {
 		}
 		
 		if (direction == 1) {
-			Motor.B.rotate(60);
+			Motor.B.rotate(300);
 			while(isBlack(c1)){
 				Motor.B.forward();
 			}
