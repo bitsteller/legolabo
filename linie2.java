@@ -18,8 +18,8 @@ public class linie2 {
 	}
 	
 	public static void moveToNextCrossing() {
-		ColorSensor c1 = new ColorSensor(SensorPort.S3);
-		ColorSensor c2 = new ColorSensor(SensorPort.S2);
+		ColorSensor c1 = new ColorSensor(SensorPort.S2);
+		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
 		Motor.A.setSpeed(100);
 		Motor.B.setSpeed(100);
@@ -28,18 +28,19 @@ public class linie2 {
 		
 		 
 		while(!Button.ENTER.isPressed()){
-			int cn1 = c1.getColorNumber();
-			int cn2 = c2.getColorNumber();
-			
+			int cn1 = c1.getColor()[0] + c1.getColor()[1] + c1.getColor()[2];
+			int cn2 = c2.getColor()[0] + c2.getColor()[1] + c2.getColor()[2];
+			int schwelle = 100;			
+
 			LCD.drawString("Wert1: " + cn1 , 0, 0);
 			LCD.drawString("Wert2: " + cn1 , 0, 2);
 			
-			if(cn1!=0) Motor.A.forward();
-			else if(cn2!=0) Motor.B.forward();
-			else if(cn1==0) Motor.A.stop();
-			else if(cn2==0) Motor.B.stop();		
+			if(cn1 > schwelle) Motor.A.forward();
+			if(cn2 > schwelle) Motor.B.forward();
+			if(cn1 < schwelle) Motor.A.stop();
+			if(cn2 < schwelle) Motor.B.stop();		
 			
-			if(cn1==0 && cn2==0) {
+			if(cn1 < schwelle && cn2 < schwelle) {
 				Motor.A.stop();	
 				Motor.B.stop();
 				return;
