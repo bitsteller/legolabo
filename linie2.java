@@ -9,7 +9,9 @@ public class linie2 {
 		while(!Button.ESCAPE.isPressed()){
 			System.out.println("Bitte Enter zum Starten!");
 			if (Button.ENTER.isPressed()) {
+				Motor.C.stop();
 				moveToNextCrossing();
+				Motor.C.forward();
 				System.out.println("Kreuzung!");
 				turn(-1);
 				System.out.println("Links abgebogen!");
@@ -27,7 +29,7 @@ public class linie2 {
 		Motor.B.forward();
 		
 		 
-		while(!Button.ENTER.isPressed()){
+		while(true){
 			int cn1 = c1.getColor()[0] + c1.getColor()[1] + c1.getColor()[2];
 			int cn2 = c2.getColor()[0] + c2.getColor()[1] + c2.getColor()[2];
 
