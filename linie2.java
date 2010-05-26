@@ -14,6 +14,9 @@ public class linie2 {
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
 		while(!Button.ENTER.isPressed()){
+			LCD.drawString("Wert1: " + c1.getColorNumber() , 0, 0);
+			LCD.drawString("Wert2: " + c2.getColorNumber() , 0, 2);
+			
 			if(c1.getColorNumber()!=0) Motor.A.forward();
 			else if(c2.getColorNumber()!=0) Motor.B.forward();
 			else if(c1.getColorNumber()==0) Motor.A.flt();
