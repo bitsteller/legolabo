@@ -5,6 +5,8 @@ public class linie2 implements Runnable {
 
 	public void run() {
 		moveToNextCrossing();
+		System.out.println("Kreuzung erreicht. Bitte Enter.");
+		Button.ENTER.waitForPress();
 	}
 	
 	public static void moveToNextCrossing() {
@@ -19,7 +21,8 @@ public class linie2 implements Runnable {
 			
 			if(c1.getColorNumber()==0 && c1.getColorNumber()==0) {
 				Motor.A.stop();	
-				Motor.B.stop();	
+				Motor.B.stop();
+				return;
 			}
 		}
 	}
