@@ -12,7 +12,7 @@ public class Parallel implements Runnable {
 		 	if(tNo == 1) {
 				LCD.drawString("Wert1: " + cs.getColorNumber() , 0, 0);
 			} else if (tNo == 2) {
-				LCD.drawString("Wert2: " + cs.getColorNumber() , 0, 2);
+				LCD.drawString("" + cs.getColor()[0] + cs.getColor()[1] + cs.getColor()[2]);
 			}
 			try {
 				Thread.sleep(200);
@@ -64,7 +64,7 @@ public class Parallel implements Runnable {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 
-		kalibrieren();
+		kalibrieren(c1,c2);
 
 		Thread t1 = new Thread(new Parallel(c1,1));
 		Thread t2 = new Thread(new Parallel(c2,2));

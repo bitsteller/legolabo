@@ -12,7 +12,7 @@ public class Parallel implements Runnable {
 		 	if(tNo == 1) {
 				LCD.drawString("Wert1: " + cs.getColorNumber() , 0, 0);
 			} else if (tNo == 2) {
-				LCD.drawString("Wert2: " + cs.getColorNumber() , 0, 2);
+				LCD.drawString("" + cs.getColor()[0] + cs.getColor()[1] + cs.getColor()[2], 0, 2);
 			}
 			try {
 				Thread.sleep(200);
