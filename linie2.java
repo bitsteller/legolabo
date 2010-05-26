@@ -10,7 +10,6 @@ public class linie2 {
 			if (Button.ENTER.isPressed()) {
 				Motor.C.stop();
 				moveToNextCrossing();
-				Motor.C.forward();
 				System.out.println("Kreuzung!");
 				
 				while(!Button.ESCAPE.isPressed()){
@@ -18,18 +17,21 @@ public class linie2 {
 						System.out.println("Links abbiegen...");
 						turn(-1);
 						System.out.println("Links abgebogen!");
+						Motor.C.forward();
 						break;
 					}
 					if (Button.LEFT.isPressed()){
 						System.out.println("Rechts abbiegen...");
 						turn(1);
 						System.out.println("Rechts abgebogen!");
+						Motor.C.forward();
 						break;
 					}
 					if (Button.ENTER.isPressed()){
 						System.out.println("Geradeaus fahren...");
 						turn(0);
 						System.out.println("Geradeaus gefahren!");
+						Motor.C.forward();
 						break;
 					}
 				}
