@@ -1,20 +1,17 @@
 import lejos.nxt.*;
 import lejos.nxt.addon.*;
-import lejos.nxt.Sound;
 
 public class linie2 {
 
 	private static int schwelle = 100;
-
-	public static void beepSequence(){
-	}
 
 	public static void run() {
 		while(!Button.ESCAPE.isPressed()){
 				moveToNextCrossing();
 				System.out.println("Kreuzung!");
 				Motor.C.forward();
-				beepSequence();
+				Sound.setVolume(75);		//für Wettbewerb 100 setzen
+				Sound.playNote(Sound.FLUTE,440,500);
 				
 				while(!Button.ESCAPE.isPressed()){
 					if (Button.RIGHT.isPressed()){
