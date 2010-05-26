@@ -24,15 +24,18 @@ public class linie2 {
 		
 		 
 		while(!Button.ENTER.isPressed()){
-			LCD.drawString("Wert1: " + c1.getColorNumber() , 0, 0);
-			LCD.drawString("Wert2: " + c2.getColorNumber() , 0, 2);
+			int cn1 = c1.getColorNumber();
+			int cn2 = c2.getColorNumber();
 			
-			if(c1.getColorNumber()!=0) Motor.A.forward();
-			else if(c2.getColorNumber()!=0) Motor.B.forward();
-			else if(c1.getColorNumber()==0) Motor.A.stop();
-			else if(c2.getColorNumber()==0) Motor.B.stop();		
+			LCD.drawString("Wert1: " + cn1 , 0, 0);
+			LCD.drawString("Wert2: " + cn1 , 0, 2);
 			
-			if(c1.getColorNumber()==0 && c1.getColorNumber()==0) {
+			if(cn1!=0) Motor.A.forward();
+			else if(cn2!=0) Motor.B.forward();
+			else if(cn1==0) Motor.A.stop();
+			else if(cn2==0) Motor.B.stop();		
+			
+			if(cn1==0 && cn2==0) {
 				Motor.A.stop();	
 				Motor.B.stop();
 				return;
