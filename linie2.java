@@ -5,13 +5,13 @@ public class linie2 {
 
 	public static void run() {
 		moveToNextCrossing();
-		System.out.println("Kreuzung erreicht. Bitte Enter.");
+		System.out.println("Kreuzung erreicht.");
 		Button.ENTER.waitForPress();
 	}
 	
 	public static void moveToNextCrossing() {
-		ColorSensor c1 = new ColorSensor(SensorPort.S2);
-		ColorSensor c2 = new ColorSensor(SensorPort.S3);
+		ColorSensor c1 = new ColorSensor(SensorPort.S3);
+		ColorSensor c2 = new ColorSensor(SensorPort.S2);
 		
 		Motor.A.setSpeed(100);
 		Motor.B.setSpeed(100);
