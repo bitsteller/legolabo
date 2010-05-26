@@ -13,6 +13,12 @@ public class linie2 {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
+		Motor.A.setSpeed(100);
+		Motor.B.setSpeed(100);
+		Motor.A.forward();
+		Motor.B.forward();
+		
+		 
 		while(!Button.ENTER.isPressed()){
 			LCD.drawString("Wert1: " + c1.getColorNumber() , 0, 0);
 			LCD.drawString("Wert2: " + c2.getColorNumber() , 0, 2);
