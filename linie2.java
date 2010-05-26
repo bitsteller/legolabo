@@ -93,7 +93,7 @@ public class linie2 {
 		}
 		
 		if (direction == 1) {
-			Motor.A.rotate(60);
+			Motor.B.rotate(60);
 			while(isBlack(c1)){
 				Motor.B.forward();
 			}
