@@ -56,8 +56,8 @@ public class linie2 {
 			
 			if(cn1 > schwelle) Motor.A.forward();
 			if(cn2 > schwelle) Motor.B.forward();
-			if(cn1 < schwelle) Motor.A.stop();
-			if(cn2 < schwelle) Motor.B.stop();		
+			if(cn1 < schwelle) Motor.A.flt();
+			if(cn2 < schwelle) Motor.B.flt();		
 			
 			if(cn1 < schwelle && cn2 < schwelle) {
 				Motor.A.stop();	
@@ -84,7 +84,12 @@ public class linie2 {
 		Motor.B.stop();
 		
 		if (direction == -1) {
-			Motor.A.rotate(200);
+			//Motor.A.rotate(200);
+			Motor.A.resetTachoCount();
+			while(Motor.A.getTachoCount() < 200){
+				Motor.A.forward();
+			}
+			
 			while(!isBlack(c2)){
 				Motor.A.forward();
 			}
@@ -95,7 +100,12 @@ public class linie2 {
 		}
 		
 		if (direction == 1) {
-			Motor.B.rotate(200);
+			//Motor.B.rotate(200);
+			Motor.B.resetTachoCount();
+			while(Motor.B.getTachoCount() < 200){
+				Motor.B.forward();
+			}
+			
 			while(!isBlack(c1)){
 				Motor.B.forward();
 			}
