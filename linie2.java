@@ -84,7 +84,7 @@ public class linie2 {
 		Motor.B.stop();
 		
 		if (direction == -1) {
-			Motor.A.rotate(120);
+			Motor.A.rotate(200);
 			while(!isBlack(c2)){
 				Motor.A.forward();
 			}
@@ -95,9 +95,9 @@ public class linie2 {
 		}
 		
 		if (direction == 1) {
-			Motor.B.rotate(120);
+			Motor.B.rotate(200);
 			while(!isBlack(c1)){
-				Motor.A.forward();
+				Motor.B.forward();
 			}
 			while(isBlack(c1)){
 				Motor.B.forward();
