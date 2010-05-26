@@ -1,7 +1,7 @@
 import lejos.pc.comm.*;
 
 public class Server {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		NXTComm nxtComm = NXTCommFactory.createNXTComm(NXTCommFactory.BLUETOOTH);
 		NXTInfo[] nxtInfo = nxtComm.search("NXT",NXTCommFactory.BLUETOOTH);
 		
