@@ -14,13 +14,13 @@ public class linie2 {
 				System.out.println("Kreuzung!");
 				
 				while(!Button.ESCAPE.isPressed()){
-					if (Button.LEFT.isPressed(){
+					if (Button.RIGHT.isPressed(){
 						System.out.println("Links abbiegen...");
 						turn(-1);
 						System.out.println("Links abgebogen!");
 						break;
 					}
-					if (Button.RIGHT.isPressed(){
+					if (Button.LEFT.isPressed(){
 						System.out.println("Rechts abbiegen...");
 						turn(1);
 						System.out.println("Rechts abgebogen!");
@@ -86,7 +86,7 @@ public class linie2 {
 		
 		if (direction == -1) {
 			Motor.A.rotate(270);
-			while(isBlack(c1)){
+			while(isBlack(c2)){
 				Motor.A.forward();
 			}
 			Motor.A.stop();
@@ -94,7 +94,7 @@ public class linie2 {
 		
 		if (direction == 1) {
 			Motor.A.rotate(60);
-			while(isBlack(c2)){
+			while(isBlack(c1)){
 				Motor.B.forward();
 			}
 			Motor.B.stop();
