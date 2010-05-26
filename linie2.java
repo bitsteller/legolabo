@@ -7,7 +7,6 @@ public class linie2 {
 
 	public static void run() {
 		while(!Button.ESCAPE.isPressed()){
-			System.out.println("Bitte Enter zum Starten!");
 			if (Button.ENTER.isPressed()) {
 				Motor.C.stop();
 				moveToNextCrossing();
