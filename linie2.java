@@ -12,6 +12,7 @@ public class linie2 {
 				moveToNextCrossing();
 				Motor.C.forward();
 				System.out.println("Kreuzung!");
+				Button.ENTER.waitForPress();
 				turn(-1);
 				System.out.println("Links abgebogen!");
 			}
@@ -52,16 +53,17 @@ public class linie2 {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
-		Motor.A.setSpeed(150);
-		Motor.B.setSpeed(150);
+		Motor.A.setSpeed(100);
+		Motor.B.setSpeed(100);
 		Motor.A.forward();
 		Motor.B.forward();
 		
-		if(isBlack(c1) && isBlack(c2)) {
-			Motor.A.stop();	
-			Motor.B.stop();
-			return;
+		while(isBlack(c1) && isBlack(c2)) {
+			Motor.A.forward();	
+			Motor.B.forward();
 		}
+		Motor.A.stop();
+		Motor.B.stop();
 		
 		if (direction == -1) {
 			Motor.B.rotate(60);
