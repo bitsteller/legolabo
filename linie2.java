@@ -17,8 +17,8 @@ public class linie2 {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
-		Motor.A.setSpeed(100);
-		Motor.B.setSpeed(100);
+		Motor.A.setSpeed(300);
+		Motor.B.setSpeed(300);
 		Motor.A.forward();
 		Motor.B.forward();
 		
@@ -26,7 +26,7 @@ public class linie2 {
 		while(!Button.ENTER.isPressed()){
 			int cn1 = c1.getColor()[0] + c1.getColor()[1] + c1.getColor()[2];
 			int cn2 = c2.getColor()[0] + c2.getColor()[1] + c2.getColor()[2];
-			int schwelle = 100;			
+			int schwelle = 100;
 
 			LCD.drawString("Wert1: " + cn1 , 0, 0);
 			LCD.drawString("Wert2: " + cn1 , 0, 2);
