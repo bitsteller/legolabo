@@ -12,9 +12,28 @@ public class linie2 {
 				moveToNextCrossing();
 				Motor.C.forward();
 				System.out.println("Kreuzung!");
-				Button.ENTER.waitForPress();
-				turn(-1);
-				System.out.println("Links abgebogen!");
+				
+				while(!Button.ESCAPE.isPressed()){
+					if (Button.LEFT.isPressed(){
+						System.out.println("Links abbiegen...");
+						turn(-1);
+						System.out.println("Links abgebogen!");
+						break;
+					}
+					if (Button.RIGHT.isPressed(){
+						System.out.println("Rechts abbiegen...");
+						turn(1);
+						System.out.println("Rechts abgebogen!");
+						break;
+					}
+					if (Button.ENTER.isPressed(){
+						System.out.println("Geradeaus fahren...");
+						turn(0);
+						System.out.println("Geradeaus gefahren!");
+						break;
+					}
+				}
+
 			}
 		}
 	}
@@ -53,8 +72,8 @@ public class linie2 {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
-		Motor.A.setSpeed(100);
-		Motor.B.setSpeed(100);
+		Motor.A.setSpeed(150);
+		Motor.B.setSpeed(150);
 		Motor.A.forward();
 		Motor.B.forward();
 		
@@ -71,6 +90,14 @@ public class linie2 {
 				Motor.A.forward();
 			}
 			Motor.A.stop();
+		}
+		
+		if (direction == 1) {
+			Motor.A.rotate(60);
+			while(isBlack(c2)){
+				Motor.B.forward();
+			}
+			Motor.B.stop();
 		}
 	}
 	
