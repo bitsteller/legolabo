@@ -1,9 +1,9 @@
 import lejos.nxt.*;
 import lejos.nxt.addon.*;
 
-public class linie2 implements Runnable {
+public class linie2 {
 
-	public void run() {
+	public static void run() {
 		moveToNextCrossing();
 		System.out.println("Kreuzung erreicht. Bitte Enter.");
 		Button.ENTER.waitForPress();
@@ -64,5 +64,6 @@ public class linie2 implements Runnable {
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 
 		kalibrieren(c1,c2);
+		run();
 	}
 }
