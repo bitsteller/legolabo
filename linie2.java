@@ -29,8 +29,8 @@ public class linie2 {
 			
 			if(c1.getColorNumber()!=0) Motor.A.forward();
 			else if(c2.getColorNumber()!=0) Motor.B.forward();
-			else if(c1.getColorNumber()==0) Motor.A.flt();
-			else if(c2.getColorNumber()==0) Motor.B.flt();		
+			else if(c1.getColorNumber()==0) Motor.A.stop();
+			else if(c2.getColorNumber()==0) Motor.B.stop();		
 			
 			if(c1.getColorNumber()==0 && c1.getColorNumber()==0) {
 				Motor.A.stop();	
