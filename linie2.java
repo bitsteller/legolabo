@@ -6,7 +6,9 @@ public class linie2 {
 	public static void run() {
 		while(!Button.ESCAPE.isPressed()){
 			if (Button.ENTER.isPressed()) {
+				Motor.C.stop();
 				moveToNextCrossing();
+				Motor.C.forward();
 				System.out.println("Kreuzung!");
 			}
 		}
@@ -24,7 +26,7 @@ public class linie2 {
 		Motor.B.forward();
 		
 		 
-		while(!Button.ENTER.isPressed()){
+		while(true){
 			int cn1 = c1.getColor()[0] + c1.getColor()[1] + c1.getColor()[2];
 			int cn2 = c2.getColor()[0] + c2.getColor()[1] + c2.getColor()[2];
 			int schwelle = 100;
