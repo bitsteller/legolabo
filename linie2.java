@@ -48,22 +48,15 @@ public class linie2 {
 		Motor.A.forward();
 		Motor.B.forward();
 		
-		 
-		while(true){
-			int cn1 = c1.getColor()[0] + c1.getColor()[1] + c1.getColor()[2];
-			int cn2 = c2.getColor()[0] + c2.getColor()[1] + c2.getColor()[2];
-			
-			if(cn1 > schwelle) Motor.A.forward();
-			if(cn2 > schwelle) Motor.B.forward();
-			if(cn1 < schwelle) Motor.A.flt();
-			if(cn2 < schwelle) Motor.B.flt();		
-			
-			if(cn1 < schwelle && cn2 < schwelle) {
-				Motor.A.stop();	
-				Motor.B.stop();
-				return;
-			}
+		while(!(isBlack(c1) && isBlack(c2))){
+			if(!isBlack(c1)) Motor.A.forward();
+			if(!isBlack(c2)) Motor.B.forward();
+			if(isBlack(c1)) Motor.A.flt();
+			if(isBlack(c2)) Motor.B.flt();		
 		}
+		
+		Motor.A.stop();
+		Motor.B.stop();
 	}
 	
 	public static void turn(int direction) {
@@ -83,7 +76,6 @@ public class linie2 {
 		Motor.B.stop();
 		
 		if (direction == -1) {
-			//Motor.A.rotate(200);
 			Motor.A.resetTachoCount();
 			while(Motor.A.getTachoCount() < 200){
 				Motor.A.forward();
@@ -99,7 +91,6 @@ public class linie2 {
 		}
 		
 		if (direction == 1) {
-			//Motor.B.rotate(200);
 			Motor.B.resetTachoCount();
 			while(Motor.B.getTachoCount() < 200){
 				Motor.B.forward();
