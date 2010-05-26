@@ -4,9 +4,13 @@ import lejos.nxt.addon.*;
 public class linie2 {
 
 	public static void run() {
-		moveToNextCrossing();
-		System.out.println("Kreuzung erreicht.");
-		Button.ENTER.waitForPress();
+		while(!Button.ESCAPE.isPressed()){
+			moveToNextCrossing();
+			System.out.println("Kreuzung erreicht.");
+			Button.ENTER.waitForPress();
+		}
+
+
 	}
 	
 	public static void moveToNextCrossing() {
