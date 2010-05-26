@@ -4,13 +4,10 @@ import lejos.nxt.addon.*;
 public class linie2 {
 
 	public static void run() {
-		while(true){
+		while(!Button.ESCAPE.isPressed()){
 			if (Button.ENTER.isPressed()) {
 				moveToNextCrossing();
 				System.out.println("Kreuzung!");
-			}
-			if (Button.ESCAPE.isPressed()) {
-				return;
 			}
 		}
 
@@ -33,7 +30,7 @@ public class linie2 {
 			int schwelle = 100;			
 
 			LCD.drawString("Wert1: " + cn1 , 0, 0);
-			LCD.drawString("Wert2: " + cn1 , 0, 2);
+			LCD.drawString("Wert2: " + cn2 , 0, 2);
 			
 			if(cn1 > schwelle) Motor.A.forward();
 			if(cn2 > schwelle) Motor.B.forward();
