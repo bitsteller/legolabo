@@ -14,19 +14,19 @@ public class linie2 {
 				System.out.println("Kreuzung!");
 				
 				while(!Button.ESCAPE.isPressed()){
-					if (Button.LEFT.isPressed(){
+					if (Button.LEFT.isPressed()){
 						System.out.println("Links abbiegen...");
 						turn(-1);
 						System.out.println("Links abgebogen!");
 						break;
 					}
-					if (Button.RIGHT.isPressed(){
+					if (Button.RIGHT.isPressed()){
 						System.out.println("Rechts abbiegen...");
 						turn(1);
 						System.out.println("Rechts abgebogen!");
 						break;
 					}
-					if (Button.ENTER.isPressed(){
+					if (Button.ENTER.isPressed()){
 						System.out.println("Geradeaus fahren...");
 						turn(0);
 						System.out.println("Geradeaus gefahren!");
