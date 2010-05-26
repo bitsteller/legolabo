@@ -1,15 +1,20 @@
 import lejos.nxt.*;
 import lejos.nxt.addon.*;
+import lejos.nxt.Sound;
 
 public class linie2 {
 
 	private static int schwelle = 100;
+
+	public static void beepSequence(){
+	}
 
 	public static void run() {
 		while(!Button.ESCAPE.isPressed()){
 				moveToNextCrossing();
 				System.out.println("Kreuzung!");
 				Motor.C.forward();
+				beepSequence();
 				
 				while(!Button.ESCAPE.isPressed()){
 					if (Button.RIGHT.isPressed()){
@@ -50,9 +55,6 @@ public class linie2 {
 		while(true){
 			int cn1 = c1.getColor()[0] + c1.getColor()[1] + c1.getColor()[2];
 			int cn2 = c2.getColor()[0] + c2.getColor()[1] + c2.getColor()[2];
-
-			LCD.drawString("Wert1: " + cn1 , 0, 0);
-			LCD.drawString("Wert2: " + cn2 , 0, 2);
 			
 			if(cn1 > schwelle) Motor.A.forward();
 			if(cn2 > schwelle) Motor.B.forward();
