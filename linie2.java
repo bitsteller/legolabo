@@ -28,7 +28,7 @@ public class linie2 {
 					}
 					if (Button.ENTER.isPressed()){
 						System.out.println("Geradeaus fahren...");
-						drive.reverse();
+						drive.turn(0);
 						System.out.println("Geradeaus gefahren!");
 						Motor.C.stop();
 						break;

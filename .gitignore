@@ -1,6 +1,8 @@
-# Will exclude all .class files
+# Will exclude all *.class files
 *.class
 # Will exclude all *~ files
 *~
+# Will exclude all *.nxj
+*nxj
 # except for .gitignore
 !.gitignore
