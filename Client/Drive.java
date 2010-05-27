@@ -26,6 +26,9 @@ public class Drive {
 			if(cn1 < SCHWELLE && cn2 < SCHWELLE) {
 				Motor.A.stop();
 				Motor.B.stop();
+				Motor.C.forward();
+				Sound.setVolume(100);
+				Sound.playNote(Sound.FLUTE,440,500);
 				return;
 			}
 		}
@@ -76,6 +79,7 @@ public class Drive {
 			}
 			Motor.B.stop();
 		}
+		Motor.C.stop();
 	}
 	
 	public static boolean isBlack (ColorSensor cs) {
@@ -136,6 +140,8 @@ public class Drive {
 		System.out.println("Kalibriert bitte Enter");
 		Button.ENTER.waitForPress();
 		LCD.clear();
+		Sound.setVolume(100);
+		Sound.playNote(Sound.PIANO,440,500);
 	}
 
 }
