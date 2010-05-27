@@ -16,7 +16,7 @@ public class Client {
 		System.out.println("Bereit");
 		out.writeChar('k');
 		out.flush();
-		playTune("HHCDEDCHAACEDC",200);
+		Drive.playTune("HHCDEDCHAACEDC",200);
 		
 		char ch = ' ';
 		
