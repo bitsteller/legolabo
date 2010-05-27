@@ -18,7 +18,7 @@ public class Transporter implements Runnable {
 
 	public void run(){
 		try {
-			out.writeChars("test.");
+			out.writeChars("#test#");
 			out.flush();
 			out.close();
 		}
