@@ -11,7 +11,7 @@ public class Connections implements Runnable {
 				connectTransporters();
 
 				Thread.yield();
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				Thread.yield();
 			}
 			catch (Exception e) {
@@ -29,7 +29,7 @@ public class Connections implements Runnable {
 		infos[2] = new NXTInfo(NXTCommFactory.BLUETOOTH, "NXT_34", "00:16:53:05:94:8F");
 		
 		for (NXTInfo info:infos) {
-			if (!isConnected(info.name)) {
+			if (!isConnected(info.name.substring(4))) {
 				try {
 					nxtComm.open(info);
 
@@ -41,15 +41,15 @@ public class Connections implements Runnable {
 
 
 					Transporter t = new Transporter(info.name.substring(4), in, out);
-					System.out.println("Verbindung zu " + info.name + " wird aufgebaut..."); 
-					System.out.println("Warten auf Rückmeldung von " + info.name + "..."); 
+					System.out.println(t.name + ": found. connecting..."); 
 					t.waitForMessage('k');
-					System.out.println(info.name + " hat sich gemeldet."); 
 					Server.transporters.add(t);
+					System.out.println(t.name + ": connection successfully established."); 
+
 					nxtComm = null;
 				}
 				catch (Exception e){
-	
+					System.out.println(e.getMessage());
 				}
 			}
 		}

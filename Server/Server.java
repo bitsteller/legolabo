@@ -23,10 +23,19 @@ public class Server {
 				}				
 				return;
 			}
-			String command = JOptionPane.showInputDialog("Commands:");
+			else {
+				Transporter t = Transporter.getByName(name);
+				
+				if (t != null) {
+					String command = JOptionPane.showInputDialog("Commands:");
 			
-			for (char c : command.toCharArray()) {
-					Transporter.getByName(name).enqueueCommand(c);
+					for (char c : command.toCharArray()) {
+							t.enqueueCommand(c);
+					}
+				}
+				else {
+					System.out.println(name + ": No such transporter available. Please check connection!");
+				}
 			}
 		}
 	}
