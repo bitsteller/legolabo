@@ -3,7 +3,7 @@
 cd Client
 make run
 
-cd..
+cd ..
 
 cd Server
 make run
