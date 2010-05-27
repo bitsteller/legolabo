@@ -105,13 +105,14 @@ public class Drive {
 	public static void reverse() {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
-		Motor.A.setSpeed(280);
-		Motor.B.setSpeed(280);
+		Motor.A.setSpeed(350);
+		Motor.B.setSpeed(350);
 		Motor.A.resetTachoCount();
-		while(Motor.A.getTachoCount() < 150){
+		while(Motor.A.getTachoCount() < 300){
 			Motor.A.forward();
 			Motor.B.backward();
 		}
+		Motor.B.stop();
 		
 		while(!isBlack(c2)){
 			Motor.A.forward();
