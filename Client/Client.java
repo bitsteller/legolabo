@@ -12,11 +12,33 @@ public class client {
 		
 		char ch = ' ';
 		
-		while(ch != '.') {
+		while(!Button.ESCAPE.isPressed()) {
 			ch = in.readChar();
-			System.out.print("" + ch);
+			if(ch == '#') {
+				while(ch != '#') {
+					System.out.print("" + ch);
+				}
+				System.out.println();
+			}
+			if(ch == 'c') {
+				LCD.clear();
+			}
+			if(ch == 'r') {
+				drive.turn(1);
+				drive.moveToNextCrossing();
+			}
+			if(ch == 'l') {
+				drive.turn(-1);
+				drive.moveToNextCrossing();
+			}
+			if(ch == 's') {
+				drive.turn(0);
+				drive.moveToNextCrossing();
+			}
+			if(ch == 't') {
+				drive.reverse();
+			}
 		}
-		Button.ENTER.waitForPress();
 	}
 
 	public static void main(String[] args) throws Exception {
