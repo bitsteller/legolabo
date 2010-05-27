@@ -108,8 +108,7 @@ public class Drive {
 		Motor.A.setSpeed(350);
 		Motor.B.setSpeed(350);
 		Motor.A.resetTachoCount();
-		
-		playTune("HHCDEDCHAACEDC",200);
+
 		while(Motor.A.getTachoCount() < 300){
 			Motor.A.forward();
 			Motor.B.backward();
@@ -129,7 +128,7 @@ public class Drive {
 	public static void kalibrieren(ColorSensor c1, ColorSensor c2) {
 
 		Sound.setVolume(100);
-		playTune("C",500)
+		playTune("C",500);
 
 		// BlackBalance
 

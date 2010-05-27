@@ -14,7 +14,7 @@ public class Client {
 		System.out.println("Starten...");
 		Drive.moveToNextCrossing();
 		System.out.println("Bereit");
-		playTune("HHCDEDCHAACEDC",200);
+		Drive.playTune("HHCDEDCHAACEDC",200);
 		
 		char ch = ' ';
 		
@@ -52,6 +52,9 @@ public class Client {
 			if(ch == 't') {
 				System.out.println("Befehl t");
 				Drive.reverse();
+				Drive.playTune("HHCDEDCHAACEDC",200);
+				Drive.moveToNextCrossing();
+						
 				out.writeChar('k');
 			}
 			if (ch == '.') {

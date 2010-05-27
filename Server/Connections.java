@@ -40,10 +40,12 @@ public class Connections implements Runnable {
 					DataOutputStream out = new DataOutputStream(os);
 
 
-					Transporter t = new Transporter(info.name, in, out);
+					Transporter t = new Transporter(info.name.substring(4), in, out);
 					Server.transporters.add(t);
 					System.out.println("Verbindung zu " + info.name + " aufgebaut."); 
-					
+					System.out.println("Warten auf Rückmeldung:"); 
+					t.waitForMessage('k');
+					System.out.println("hat sich gemeldet"); 
 					nxtComm = null;
 				}
 				catch (Exception e){
