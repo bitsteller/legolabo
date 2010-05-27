@@ -15,8 +15,8 @@ public class client {
 		while(ch != '.') {
 			ch = in.readChar();
 			System.out.print("" + ch);
-			Button.ENTER.waitForPress();
 		}
+		Button.ENTER.waitForPress();
 	}
 
 	public static void main(String[] args) throws Exception {
