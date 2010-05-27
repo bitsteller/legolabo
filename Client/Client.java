@@ -15,14 +15,14 @@ public class Client {
 		
 		while(!Button.ESCAPE.isPressed()) {
 			ch = in.readChar();
-			if(ch == '#') {
+			if(ch == '_') {
 				ch = in.readChar();
 				String lcd = "";
-				while(ch != '#') {
+				while(ch != '_') {
 					lcd += "" + ch;
 					ch = in.readChar();
 				}
-				LCD.drawString(lcd);
+				LCD.drawString(lcd,0,0);
 			}
 			if(ch == 'c') {
 				LCD.clear();
