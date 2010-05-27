@@ -4,7 +4,7 @@ import lejos.nxt.remote.*;
 import lejos.nxt.comm.*;
 import java.io.*;
 
-public class client {
+public class Client {
 
 	public static void run() throws Exception {
 		NXTConnection connection = Bluetooth.waitForConnection();
@@ -24,19 +24,19 @@ public class client {
 				LCD.clear();
 			}
 			if(ch == 'r') {
-				drive.turn(1);
-				drive.moveToNextCrossing();
+				Drive.turn(1);
+				Drive.moveToNextCrossing();
 			}
 			if(ch == 'l') {
-				drive.turn(-1);
-				drive.moveToNextCrossing();
+				Drive.turn(-1);
+				Drive.moveToNextCrossing();
 			}
 			if(ch == 's') {
-				drive.turn(0);
-				drive.moveToNextCrossing();
+				Drive.turn(0);
+				Drive.moveToNextCrossing();
 			}
 			if(ch == 't') {
-				drive.reverse();
+				Drive.reverse();
 			}
 		}
 	}
@@ -45,7 +45,7 @@ public class client {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 
-		//drive.kalibrieren(c1,c2);
+		//Drive.kalibrieren(c1,c2);
 		run();
 	}
 
