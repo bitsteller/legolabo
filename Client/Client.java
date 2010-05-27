@@ -22,7 +22,7 @@ public class Client {
 					lcd += "" + ch;
 					ch = in.readChar();
 				}
-				System.out.println(lcd);
+				LCD.drawString(lcd);
 			}
 			if(ch == 'c') {
 				LCD.clear();
