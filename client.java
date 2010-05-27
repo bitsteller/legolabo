@@ -15,6 +15,7 @@ public class client {
 		while(ch != '.') {
 			ch = in.readChar();
 			System.out.print("" + ch);
+			Button.ENTER.waitForPress();
 		}
 	}
 
@@ -22,7 +23,7 @@ public class client {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 
-		drive.kalibrieren(c1,c2);
+		//drive.kalibrieren(c1,c2);
 		run();
 	}
 
