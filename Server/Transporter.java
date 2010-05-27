@@ -9,7 +9,7 @@ public class Transporter implements Runnable {
 	public String name;
 	public Thread thread;
 	
-	public ArrayList<Character> cmdq = new ArrayList<Character>();
+	private ArrayList<Character> cmdq = new ArrayList<Character>();
 
 	public Transporter(String name, DataInputStream in, DataOutputStream out) {
 		this.name = name;
@@ -36,6 +36,10 @@ public class Transporter implements Runnable {
 		}
 	}
 	
+	public void enqueueCommand(char cmd) throws Exception {
+		this.cmdq.add(cmd);
+	}
+	
 	public void sendCommand(char cmd) throws Exception {
 		System.out.println(name + ": " + cmd);
 		out.writeChar(cmd);
@@ -47,11 +51,30 @@ public class Transporter implements Runnable {
 		out.writeChars(cmd);
 		out.flush();
 	}
+	
 	public void waitForMessage(char msg) throws Exception {
 		char ch = in.readChar();
 	 	while(ch != msg) {
 			ch = in.readChar();
 		}
 		return;
+	}
+	
+	public void disconnect() throws Exception {
+		System.out.println("Sending shutdown request to + " + this.name + "...");
+		sendCommand('.');
+		System.out.println("Waiting for shutdown of + " + this.name + "...");
+		waitForMessage('k');
+		Server.transporters.remove(this);
+		System.out.println(this.name + " successfully disconnected.");
+	}
+	
+	public static Transporter getByName(String name) {
+		for (Transporter t: Server.transporters) {
+			if (t.name.equals(name)) {
+				return t;
+			}
+		}
+		return null;
 	}
 }

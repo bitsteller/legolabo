@@ -10,30 +10,23 @@ public class Server {
 		Thread thread = new Thread(new Connections());
 		thread.start(); //Start connection management
 	
-		String command = "";
-		while(!command.equals("exit")) {
+		while(true) {
+			String robotlist = "";
 			for (Transporter t: Server.transporters) {
-				System.out.print(t.name + " ");
+				robotlist += t.name + " ";
 			}
-			System.out.println();
 			
-			String name = JOptionPane.showInputDialog("Name:");
+			String name = JOptionPane.showInputDialog("Name (" + robotlist + "):");
 			if (name.equals("exit")) {
 				for (Transporter t: Server.transporters) {
-					t.cmdq.add('.');
-				}
-				Thread.sleep(10000);
+					t.disconnect();
+				}				
 				return;
 			}
-			command = JOptionPane.showInputDialog("Commands:");
+			String command = JOptionPane.showInputDialog("Commands:");
 			
-			for (Transporter t: Server.transporters) {
-				if (t.name.equals(name)) {
-				
-					for (char c : command.toCharArray()) {
-						t.cmdq.add(c);
-					}
-				}
+			for (char c : command.toCharArray()) {
+					Transporter.getByName(name).enqueueCommand(c);
 			}
 		}
 	}
