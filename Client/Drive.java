@@ -38,8 +38,8 @@ public class Drive {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
-		Motor.A.setSpeed(400);
-		Motor.B.setSpeed(400);
+		Motor.A.setSpeed(200);
+		Motor.B.setSpeed(200);
 		Motor.A.forward();
 		Motor.B.forward();
 		
@@ -52,10 +52,18 @@ public class Drive {
 		
 		if (direction == -1) {
 			Motor.A.resetTachoCount();
-			while(Motor.A.getTachoCount() < 200){
+			while(Motor.A.getTachoCount() < 30){
 				Motor.A.forward();
+				Motor.B.forward();
 			}
+			Motor.A.stop();
+			Motor.B.stop();
 			
+			while(Motor.A.getTachoCount() < 50){
+				Motor.A.forward();
+				Motor.B.backward();
+			}
+			Motor.B.stop();
 			while(!isBlack(c2)){
 				Motor.A.forward();
 			}
@@ -67,10 +75,11 @@ public class Drive {
 		
 		if (direction == 1) {
 			Motor.B.resetTachoCount();
-			while(Motor.B.getTachoCount() < 200){
+			while(Motor.B.getTachoCount() < 30){
+				Motor.A.backward();
 				Motor.B.forward();
 			}
-			
+				Motor.A.stop();
 			while(!isBlack(c1)){
 				Motor.B.forward();
 			}
@@ -127,13 +136,7 @@ public class Drive {
 		c2.initBlackLevel();
 		
 		LCD.clear();
-		System.out.println("Kalibriert bitte Enter");
-		Button.ENTER.waitForPress();
-
-		// Clearen
-
-		LCD.clear();
-
+		
 		// WhiteBalance
 
 		System.out.println("auf Weiss stellen und Enter");
@@ -142,9 +145,6 @@ public class Drive {
 		c1.initWhiteBalance();
 		c2.initWhiteBalance();
 		
-		LCD.clear();
-		System.out.println("Kalibriert bitte Enter");
-		Button.ENTER.waitForPress();
 		LCD.clear();
 		Sound.setVolume(100);
 		Sound.playNote(Sound.PIANO,440,500);
