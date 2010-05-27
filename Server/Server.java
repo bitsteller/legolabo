@@ -16,9 +16,17 @@ public class Server {
 		DataInputStream in = new DataInputStream(is);
 		DataOutputStream out = new DataOutputStream(os);
 		
-		out.writeChars("test.");
+		
+		Transporter t = new Transporter("NXT_07", in, out);
+		
+		Thread t1 = new Thread(t);
+		t1.start();
+		
+		/*out.writeChars("test.");
 		out.flush();
-		out.close();
+		out.close();*/
+		
+		
 	}
 
 }
