@@ -15,6 +15,7 @@ public class Client {
 		Drive.moveToNextCrossing();
 		System.out.println("Bereit");
 		out.writeChar('k');
+		out.flush();
 		playTune("HHCDEDCHAACEDC",200);
 		
 		char ch = ' ';
@@ -37,26 +38,29 @@ public class Client {
 				Drive.turn(1);
 				Drive.moveToNextCrossing();
 				out.writeChar('k');
+				out.flush();
 			}
 			if(ch == 'l') {
 				System.out.println("Befehl l");
 				Drive.turn(-1);
 				Drive.moveToNextCrossing();
 				out.writeChar('k');
+				out.flush();
 			}
 			if(ch == 's') {
 				System.out.println("Befehl s");
 				Drive.turn(0);
 				Drive.moveToNextCrossing();
 				out.writeChar('k');
+				out.flush();
 			}
 			if(ch == 't') {
 				System.out.println("Befehl t");
 				Drive.reverse();
 				Drive.playTune("HHCDEDCHAACEDC",200);
 				Drive.moveToNextCrossing();
-						
 				out.writeChar('k');
+				out.flush();
 			}
 			if (ch == '.') {
 				Button.ENTER.waitForPress();
