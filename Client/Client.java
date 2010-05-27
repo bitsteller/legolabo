@@ -15,7 +15,7 @@ public class Client {
 		Drive.moveToNextCrossing();
 		System.out.println("Bereit");
 		out.writeChar('k');
-		playTune("HHCDEDCHAACEDC",200);
+		Drive.playTune("HHCDEDCHAACEDC",200);
 		
 		char ch = ' ';
 		
