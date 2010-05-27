@@ -136,6 +136,8 @@ public class Drive {
 		System.out.println("Kalibriert bitte Enter");
 		Button.ENTER.waitForPress();
 		LCD.clear();
+		Sound.setVolume(100);
+		Sound.playNote(Sound.PIANO,440,500);
 	}
 
 }
