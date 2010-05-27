@@ -28,7 +28,7 @@ public class Drive {
 				Motor.B.stop();
 				Motor.C.forward();
 				Sound.setVolume(100);
-				Sound.playNote(Sound.FLUTE,440,500);
+				playTune("C",500);
 				return;
 			}
 		}
@@ -117,6 +117,7 @@ public class Drive {
 
 		Sound.setVolume(100);
 		Sound.playNote(Sound.PIANO,264,500);
+		playTune("HHCDEDCH",200);
 
 		// BlackBalance
 
@@ -147,7 +148,40 @@ public class Drive {
 		Button.ENTER.waitForPress();
 		LCD.clear();
 		Sound.setVolume(100);
-		Sound.playNote(Sound.PIANO,440,500);
+		playTune("A",500);
+	}
+	
+	public static void playTune(String m, int t) {
+		char[] charArray = m.toCharArray();
+		for(char c : charArray) {
+			if(c == 'C') {
+				Sound.playNote(Sound.PIANO,261,t);
+			}
+			if(c == 'D') {
+				Sound.playNote(Sound.PIANO,293,t);
+			}
+			if(c == 'E') {
+				Sound.playNote(Sound.PIANO,329,t);
+			}
+			if(c == 'F') {
+				Sound.playNote(Sound.PIANO,349,t);
+			}
+			if(c == 'G') {
+				Sound.playNote(Sound.PIANO,396,t);
+			}
+			if(c == 'A') {
+				Sound.playNote(Sound.PIANO,440,t);
+			}
+			if(c == 'B') {
+				Sound.playNote(Sound.PIANO,475,t);
+			}
+			if(c == 'H') {
+				Sound.playNote(Sound.PIANO,495,t);
+			}
+			if(c == 'X') {
+				Sound.playNote(Sound.PIANO,528,t);
+			}
+		}
 	}
 
 }
