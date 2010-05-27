@@ -31,6 +31,7 @@ public class Server {
 
 				Transporter t = new Transporter(info.name, in, out);
 				Server.transporters.add(t);
+				System.out.println("Verbindung zu " + info.name + " aufgebaut."); 
 			}
 			catch (Exception e){
 	
