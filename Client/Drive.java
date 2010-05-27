@@ -115,6 +115,9 @@ public class Drive {
 	
 	public static void kalibrieren(ColorSensor c1, ColorSensor c2) {
 
+		Sound.setVolume(100);
+		Sound.playNote(Sound.PIANO,440,500);
+
 		// BlackBalance
 
 		System.out.println("auf Schwarz stellen und Enter");
