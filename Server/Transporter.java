@@ -5,12 +5,15 @@ public class Transporter implements Runnable {
 
 	private DataInputStream in;
 	private DataOutputStream out;
-	private String name;
+	public String name;
+	public Thread thread;
 
 	public Transporter(String name, DataInputStream in, DataOutputStream out) {
 		this.name = name;
 		this.in = in;
 		this.out = out;
+		thread = new Thread(this);
+		thread.start();
 	}
 
 	public void run(){
