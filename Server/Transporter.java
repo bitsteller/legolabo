@@ -26,9 +26,8 @@ public class Transporter implements Runnable {
 					sendCommand(cmdq.get(0));
 					cmdq.remove(0);
 				}
-				System.out.println(this.name + " run methode");
 				Thread.yield();
-				Thread.sleep(1000);
+				Thread.sleep(100);
 				Thread.yield();
 			}
 			catch (Exception e) {

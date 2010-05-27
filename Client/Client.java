@@ -5,68 +5,76 @@ import lejos.nxt.comm.*;
 import java.io.*;
 
 public class Client {
-
+	private static DataInputStream in;
+	private static DataOutputStream out;
+	
 	public static void run() throws Exception {
 		NXTConnection connection = Bluetooth.waitForConnection();
-		DataInputStream in = connection.openDataInputStream();
-		DataOutputStream out = connection.openDataOutputStream();
+		in = connection.openDataInputStream();
+		out = connection.openDataOutputStream();
 		
 		System.out.println("Starten...");
 		Drive.moveToNextCrossing();
 		System.out.println("Bereit");
-		out.writeChar('k');
-		out.flush();
+		sendMessage('k');
 		Drive.playTune("HHCDEDCHAACEDC",200);
 		
 		char ch = ' ';
 		
 		while(!Button.ESCAPE.isPressed()) {
 			ch = in.readChar();
-			if(ch == '#') {
+			if(ch == '#') { //String ausgeben
+				sendMessage('k');
 				ch = in.readChar();
 			 	while(ch != '#') {
 			 		System.out.print("" + ch);
+			 		sendMessage('k');
 					ch = in.readChar();
 				}
 				System.out.println();
+				sendMessage('k');
 			}
-			if(ch == 'c') {
+			if(ch == 'c') { //Display löscchen
 				LCD.clear();
+				sendMessage('k');
 			}
-			if(ch == 'r') {
+			if(ch == 'r') { //Rechts abbiegen
 				System.out.println("Befehl r");
 				Drive.turn(1);
 				Drive.moveToNextCrossing();
-				out.writeChar('k');
-				out.flush();
+				sendMessage('k');
 			}
-			if(ch == 'l') {
+			if(ch == 'l') { //Links abbiegen
 				System.out.println("Befehl l");
 				Drive.turn(-1);
 				Drive.moveToNextCrossing();
-				out.writeChar('k');
-				out.flush();
+				sendMessage('k');
 			}
-			if(ch == 's') {
+			if(ch == 's') { //Geradaus fahren
 				System.out.println("Befehl s");
 				Drive.turn(0);
 				Drive.moveToNextCrossing();
-				out.writeChar('k');
-				out.flush();
+				sendMessage('k');
 			}
-			if(ch == 't') {
+			if(ch == 't') { //Umdrehen
 				System.out.println("Befehl t");
 				Drive.reverse();
 				Drive.playTune("HHCDEDCHAACEDC",200);
 				Drive.moveToNextCrossing();
-				out.writeChar('k');
-				out.flush();
+				sendMessage('k');
 			}
-			if (ch == '.') {
+			if (ch == '.') { //Programm beenden
+				in.close();
+				out.close();
 				Drive.playTune("CDECAAHCDEDCHH",200);
 				return;
 			}
 		}
+	}
+	
+	public static void sendMessage(char msg) throws IOException{
+		out.writeChar(msg);
+		out.flush();
 	}
 
 	public static void main(String[] args) throws Exception {

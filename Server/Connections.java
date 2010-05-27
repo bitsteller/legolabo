@@ -7,7 +7,7 @@ public class Connections implements Runnable {
 	public void run() {
 		while(true) {
 			try {
-				System.out.println("Verbindungen aufbauen...");
+				System.out.println("Searching robots...");
 				connectTransporters();
 
 				Thread.yield();
