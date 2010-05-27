@@ -19,13 +19,15 @@ public class Server {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Name: ");
 			String name = sc.next();
-			System.out.println("Command: ");
+			System.out.println("Commands: ");
 			command = sc.next();
 			
 			for (Transporter t: Server.transporters) {
 				if (t.name.equals(name)) {
-					//t.sendCommand(command.toCharArray()[0]);
-					t.cmdq.add(0,command.toCharArray()[0]);
+				
+					for (char c : command.toCharArray()) {
+						t.cmdq.add(c);
+					}
 				}
 			}
 		}

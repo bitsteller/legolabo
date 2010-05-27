@@ -28,30 +28,13 @@ public class Transporter implements Runnable {
 				}
 				System.out.println(this.name + " run methode");
 				Thread.yield();
-				Thread.sleep(5000);
+				Thread.sleep(1000);
 				Thread.yield();
 			}
 			catch (Exception e) {
 			
 			}
 		}
-		/*try {
-			while (true) {
-				System.out.println("Befehl für " + name + " eingeben: ");
-				Scanner sc = new Scanner(System.in);
-				String s = sc.next();
-			
-				sendCommand(s.toCharArray()[0]);
-				
-				if (s.equals(".")) {
-					break;
-				}
-			}
-			out.close();
-		}
-		catch (Exception e) {
-		
-		}*/
 	}
 	
 	public void sendCommand(char cmd) throws Exception {
@@ -60,6 +43,11 @@ public class Transporter implements Runnable {
 		out.flush();
 	}
 	
+	public void sendCommands(String cmd) throws Exception {
+		System.out.println(name + ": " + cmd);
+		out.writeChars(cmd);
+		out.flush();
+	}
 	public void waitForMessage(char msg) throws Exception {
 		char ch = in.readChar();
 	 	while(ch != msg) {

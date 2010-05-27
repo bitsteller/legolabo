@@ -38,33 +38,25 @@ public class Drive {
 	public static void turn(int direction) {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
-		
+
 		Motor.A.setSpeed(200);
 		Motor.B.setSpeed(200);
 		Motor.A.forward();
 		Motor.B.forward();
-		
+
 		while(isBlack(c1) && isBlack(c2)) {
-			Motor.A.forward();	
+			Motor.A.forward();
 			Motor.B.forward();
 		}
 		Motor.A.stop();
 		Motor.B.stop();
-		
+
 		if (direction == -1) {
 			Motor.A.resetTachoCount();
-			while(Motor.A.getTachoCount() < 30){
+			while(Motor.A.getTachoCount() < 200){
 				Motor.A.forward();
-				Motor.B.forward();
 			}
-			Motor.A.stop();
-			Motor.B.stop();
-			
-			while(Motor.A.getTachoCount() < 50){
-				Motor.A.forward();
-				Motor.B.backward();
-			}
-			Motor.B.stop();
+
 			while(!isBlack(c2)){
 				Motor.A.forward();
 			}
@@ -73,14 +65,13 @@ public class Drive {
 			}
 			Motor.A.stop();
 		}
-		
+
 		if (direction == 1) {
 			Motor.B.resetTachoCount();
-			while(Motor.B.getTachoCount() < 30){
-				Motor.A.backward();
+			while(Motor.B.getTachoCount() < 200){
 				Motor.B.forward();
 			}
-				Motor.A.stop();
+
 			while(!isBlack(c1)){
 				Motor.B.forward();
 			}

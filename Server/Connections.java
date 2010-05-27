@@ -41,11 +41,11 @@ public class Connections implements Runnable {
 
 
 					Transporter t = new Transporter(info.name.substring(4), in, out);
-					Server.transporters.add(t);
-					System.out.println("Verbindung zu " + info.name + " aufgebaut."); 
-					System.out.println("Warten auf Rückmeldung:"); 
+					System.out.println("Verbindung zu " + info.name + " wird aufgebaut..."); 
+					System.out.println("Warten auf Rückmeldung von " + info.name + "..."); 
 					t.waitForMessage('k');
-					System.out.println("hat sich gemeldet"); 
+					System.out.println(info.name + " hat sich gemeldet."); 
+					Server.transporters.add(t);
 					nxtComm = null;
 				}
 				catch (Exception e){
