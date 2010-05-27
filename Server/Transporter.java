@@ -1,5 +1,6 @@
 import lejos.pc.comm.*;
 import java.io.*;
+import java.util.*;
 
 public class Transporter implements Runnable {
 
@@ -17,26 +18,23 @@ public class Transporter implements Runnable {
 	}
 
 	public void run(){
-		try {
-			sendCommand('#');
-			out.writeChars("Hallo");
-			sendCommand('#');
-			sendCommand('r');
-			waitForMessage('k');
-			sendCommand('l');
-			waitForMessage('k');
-			sendCommand('s');
-			waitForMessage('k');
-			sendCommand('#');
-			out.writeChars("Goodbye");
-			sendCommand('#');
-			sendCommand('.');
-
+		/*try {
+			while (true) {
+				System.out.println("Befehl für " + name + " eingeben: ");
+				Scanner sc = new Scanner(System.in);
+				String s = sc.next();
+			
+				sendCommand(s.toCharArray()[0]);
+				
+				if (s.equals(".")) {
+					break;
+				}
+			}
 			out.close();
 		}
 		catch (Exception e) {
 		
-		}
+		}*/
 	}
 	
 	public void sendCommand(char cmd) throws Exception {

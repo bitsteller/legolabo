@@ -7,7 +7,27 @@ public class Server {
 	public static ArrayList<Transporter> transporters = new ArrayList<Transporter>();;
 
 	public static void main(String[] args) throws Exception {
-		connectTransporters();
+		String command = "";
+		while(!command.equals("exit")) {
+			connectTransporters();
+			
+			for (Transporter t: Server.transporters) {
+				System.out.print(t.name + " ");
+			}
+			System.out.println();
+			
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Name: ");
+			String name = sc.next();
+			System.out.println("Command: ");
+			command = sc.next();
+			
+			for (Transporter t: Server.transporters) {
+				if (t.name.equals(name)) {
+					t.sendCommand(command.toCharArray()[0]);
+				}
+			}
+		}
 	}
 	
 	public static void connectTransporters() throws Exception {
@@ -19,6 +39,11 @@ public class Server {
 		infos[2] = new NXTInfo(NXTCommFactory.BLUETOOTH, "NXT_34", "00:16:53:05:94:8F");
 		
 		for (NXTInfo info:infos) {
+			for (Transporter t: Server.transporters) {
+				if (t.name.equals(info.name)) {
+					break;
+				}
+			}
 			try {
 				nxtComm.open(info);
 
