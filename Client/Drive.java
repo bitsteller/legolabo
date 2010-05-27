@@ -110,6 +110,7 @@ public class Drive {
 			Motor.A.forward();
 		}
 		Motor.A.stop();
+		Motor.C.stop();
 	}
 	
 	public static void kalibrieren(ColorSensor c1, ColorSensor c2) {
