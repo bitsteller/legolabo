@@ -10,7 +10,7 @@ public class Server {
 		Thread thread = new Thread(new Connections());
 		thread.start(); //Start connection management
 	
-		while(true) {
+		while(true) { //Command input mode
 			String robotlist = "";
 			for (Transporter t: Server.transporters) {
 				robotlist += t.name + " ";
