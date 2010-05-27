@@ -95,22 +95,28 @@ public class Drive {
 	public static void reverse() {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
-			Motor.A.resetTachoCount();
-			while(Motor.A.getTachoCount() < 150){
-				Motor.A.forward();
-				Motor.B.backward();
-			}
-			
-			while(!isBlack(c2)){
-				Motor.A.forward();
-			}
-			while(isBlack(c2)){
-				Motor.A.forward();
-			}
-			Motor.A.stop();
+		Motor.A.setSpeed(280);
+		Motor.B.setSpeed(280);
+		Motor.A.resetTachoCount();
+		while(Motor.A.getTachoCount() < 150){
+			Motor.A.forward();
+			Motor.B.backward();
+		}
+		
+		while(!isBlack(c2)){
+			Motor.A.forward();
+		}
+		while(isBlack(c2)){
+			Motor.A.forward();
+		}
+		Motor.A.stop();
+		Motor.C.stop();
 	}
 	
 	public static void kalibrieren(ColorSensor c1, ColorSensor c2) {
+
+		Sound.setVolume(100);
+		Sound.playNote(Sound.PIANO,440,500);
 
 		// BlackBalance
 

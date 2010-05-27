@@ -51,6 +51,7 @@ public class Client {
 			if(ch == 't') {
 				System.out.println("Befehl t");
 				Drive.reverse();
+				out.writeChar('k');
 			}
 			if (ch == '.') {
 				Button.ENTER.waitForPress();
