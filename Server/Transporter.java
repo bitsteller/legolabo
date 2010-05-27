@@ -8,6 +8,8 @@ public class Transporter implements Runnable {
 	private DataOutputStream out;
 	public String name;
 	public Thread thread;
+	
+	public ArrayList<Character> cmdq = new ArrayList<Character>();
 
 	public Transporter(String name, DataInputStream in, DataOutputStream out) {
 		this.name = name;
@@ -18,6 +20,17 @@ public class Transporter implements Runnable {
 	}
 
 	public void run(){
+		while (true) {
+			try {
+				if (cmdq.get(0) != null) {
+					sendCommand(cmdq.get(0));
+					cmdq.remove(0);
+				}
+			}
+			catch (Exception e) {
+			
+			}
+		}
 		/*try {
 			while (true) {
 				System.out.println("Befehl für " + name + " eingeben: ");
