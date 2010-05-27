@@ -14,6 +14,7 @@ public class Client {
 		System.out.println("Starten...");
 		Drive.moveToNextCrossing();
 		System.out.println("Bereit");
+		playTune("HHCDEDCHAACEDC",200);
 		
 		char ch = ' ';
 		
