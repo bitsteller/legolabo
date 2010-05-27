@@ -64,9 +64,10 @@ public class Client {
 				sendMessage('k');
 			}
 			if (ch == '.') { //Programm beenden
+				Drive.playTune("CDECAAHCDEDCHH",200);
+				sendMessage('k');
 				in.close();
 				out.close();
-				Drive.playTune("CDECAAHCDEDCHH",200);
 				return;
 			}
 		}
