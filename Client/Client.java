@@ -9,14 +9,17 @@ public class Client {
 	public static void run() throws Exception {
 		NXTConnection connection = Bluetooth.waitForConnection();
 		DataInputStream in = connection.openDataInputStream();
+		DataOutputStream out = connection.openDataOutputStream();
 		
 		char ch = ' ';
 		
 		while(!Button.ESCAPE.isPressed()) {
 			ch = in.readChar();
 			if(ch == '#') {
+				ch = in.readChar();
 				while(ch != '#') {
 					System.out.print("" + ch);
+					ch = in.readChar();
 				}
 				System.out.println();
 			}
@@ -26,14 +29,17 @@ public class Client {
 			if(ch == 'r') {
 				Drive.turn(1);
 				Drive.moveToNextCrossing();
+				out.writeChar('k');
 			}
 			if(ch == 'l') {
 				Drive.turn(-1);
 				Drive.moveToNextCrossing();
+				out.writeChar('k');
 			}
 			if(ch == 's') {
 				Drive.turn(0);
 				Drive.moveToNextCrossing();
+				out.writeChar('k');
 			}
 			if(ch == 't') {
 				Drive.reverse();
