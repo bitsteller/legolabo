@@ -19,19 +19,29 @@ public class Transporter implements Runnable {
 		thread.start();
 	}
 
-	public void run(){
+	public void run() {
 		while (true) {
 			try {
-				if (cmdq.get(0) != null) {
-					sendCommand(cmdq.get(0));
-					cmdq.remove(0);
+				while (cmdq.get(0) != null) {
+					char cmd = cmdq.get(0);
+					
+					if (cmd == '.') {
+						this.disconnect();
+					}
+					else {
+						sendCommand(cmd);
+						System.out.println(name + ": busy(" + cmd + ")...");
+						waitForMessage('k');
+						cmdq.remove(0);
+						System.out.println(name + ": ready.");
+					}
 				}
 				Thread.yield();
-				Thread.sleep(100);
+				Thread.sleep(500);
 				Thread.yield();
 			}
 			catch (Exception e) {
-			
+				System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -40,15 +50,9 @@ public class Transporter implements Runnable {
 		this.cmdq.add(cmd);
 	}
 	
-	public void sendCommand(char cmd) throws Exception {
-		System.out.println(name + ": " + cmd);
+	private void sendCommand(char cmd) throws Exception {
+		System.out.println(name + ": sending command(" + cmd + ")...");
 		out.writeChar(cmd);
-		out.flush();
-	}
-	
-	public void sendCommands(String cmd) throws Exception {
-		System.out.println(name + ": " + cmd);
-		out.writeChars(cmd);
 		out.flush();
 	}
 	
@@ -61,12 +65,12 @@ public class Transporter implements Runnable {
 	}
 	
 	public void disconnect() throws Exception {
-		System.out.println("Sending shutdown request to + " + this.name + "...");
+		System.out.println(this.name + ": sending shutdown request...");
 		sendCommand('.');
-		System.out.println("Waiting for shutdown of + " + this.name + "...");
+		System.out.println(this.name + ": busy (shutting down)...");
 		waitForMessage('k');
 		Server.transporters.remove(this);
-		System.out.println(this.name + " successfully disconnected.");
+		System.out.println(this.name + ": successfully disconnected.");
 	}
 	
 	public static Transporter getByName(String name) {
