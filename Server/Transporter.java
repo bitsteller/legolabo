@@ -33,9 +33,11 @@ public class Transporter implements Runnable {
 						System.out.println(name + ": busy(" + cmd + ")...");
 						waitForMessage('k');
 						cmdq.remove(0);
-						System.out.println(name + ": ready.");
 					}
+					Thread.yield();
 				}
+				System.out.println(name + ": ready.");
+				
 				Thread.yield();
 				Thread.sleep(500);
 				Thread.yield();
