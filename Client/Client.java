@@ -17,11 +17,12 @@ public class Client {
 			ch = in.readChar();
 			if(ch == '#') {
 				ch = in.readChar();
+				String lcd = "";
 				while(ch != '#') {
-					System.out.print("" + ch);
+					lcd += "" + ch;
 					ch = in.readChar();
 				}
-				System.out.println();
+				System.out.println(lcd);
 			}
 			if(ch == 'c') {
 				LCD.clear();
