@@ -11,39 +11,50 @@ public class Client {
 		DataInputStream in = connection.openDataInputStream();
 		DataOutputStream out = connection.openDataOutputStream();
 		
+		System.out.println("Starten...");
+		Drive.moveToNextCrossing();
+		System.out.println("Bereit");
+		
 		char ch = ' ';
 		
 		while(!Button.ESCAPE.isPressed()) {
 			ch = in.readChar();
-			if(ch == '_') {
+			if(ch == '#') {
 				ch = in.readChar();
-				String lcd = "";
-				while(ch != '_') {
-					lcd += "" + ch;
+			 	while(ch != '#') {
+			 		System.out.print("" + ch);
 					ch = in.readChar();
 				}
-				LCD.drawString(lcd,0,0);
+				System.out.println();
 			}
 			if(ch == 'c') {
 				LCD.clear();
 			}
 			if(ch == 'r') {
+				System.out.println("Befehl r");
 				Drive.turn(1);
 				Drive.moveToNextCrossing();
 				out.writeChar('k');
 			}
 			if(ch == 'l') {
+				System.out.println("Befehl l");
 				Drive.turn(-1);
 				Drive.moveToNextCrossing();
 				out.writeChar('k');
 			}
 			if(ch == 's') {
+				System.out.println("Befehl s");
 				Drive.turn(0);
 				Drive.moveToNextCrossing();
 				out.writeChar('k');
 			}
 			if(ch == 't') {
+				System.out.println("Befehl t");
 				Drive.reverse();
+			}
+			if (ch == '.') {
+				Button.ENTER.waitForPress();
+				return;
 			}
 		}
 	}
@@ -52,7 +63,7 @@ public class Client {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 
-		//Drive.kalibrieren(c1,c2);
+		Drive.kalibrieren(c1,c2);
 		run();
 	}
 

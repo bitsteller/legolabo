@@ -135,7 +135,7 @@ public class Drive {
 		LCD.clear();
 		System.out.println("Kalibriert bitte Enter");
 		Button.ENTER.waitForPress();
-
+		LCD.clear();
 	}
 
 }
