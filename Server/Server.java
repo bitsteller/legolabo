@@ -19,6 +19,13 @@ public class Server {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Name: ");
 			String name = sc.next();
+			if (name.equals("exit")) {
+				for (Transporter t: Server.transporters) {
+					t.cmdq.add('.');
+				}
+				Thread.sleep(10000);
+				return;
+			}
 			System.out.println("Commands: ");
 			command = sc.next();
 			

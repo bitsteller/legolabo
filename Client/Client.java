@@ -63,7 +63,7 @@ public class Client {
 				out.flush();
 			}
 			if (ch == '.') {
-				Button.ENTER.waitForPress();
+				Drive.playTune("CDECAAHCDEDCHH",200);
 				return;
 			}
 		}
