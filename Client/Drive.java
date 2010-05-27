@@ -9,8 +9,8 @@ public class Drive {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
-		Motor.A.setSpeed(300);
-		Motor.B.setSpeed(300);
+		Motor.A.setSpeed(320);
+		Motor.B.setSpeed(320);
 		Motor.A.forward();
 		Motor.B.forward();
 		
@@ -35,8 +35,8 @@ public class Drive {
 		ColorSensor c1 = new ColorSensor(SensorPort.S2);
 		ColorSensor c2 = new ColorSensor(SensorPort.S3);
 		
-		Motor.A.setSpeed(200);
-		Motor.B.setSpeed(200);
+		Motor.A.setSpeed(400);
+		Motor.B.setSpeed(400);
 		Motor.A.forward();
 		Motor.B.forward();
 		
