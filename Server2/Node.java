@@ -33,16 +33,35 @@ public class Node {
 	}
 	
 	public Good pullGood(Good.Goods type, int amount) {
-		if (type == Good.Goods.EISEN || type == Good.Goods.KOHLE) {
+		if (type == Good.Goods.EISEN || type == Good.Goods.KOHLE || type == Good.Goods.HOLZ) {
 			return new Good(type,amount);
 		}
 		else {
-			//Aus Lager nehmen
+			int amt = 0;
+			Good g = null;
+			for (Good go : this.goods) {
+				if (go.type == type) {
+					g = go;
+				}
+			}
+			if (g != null) {
+				if (amount < g.amount) {
+					g.amount -= amount;
+					return new Good(type,amount);
+				}
+				else {
+					int a = g.amount;
+					g.amount = 0;
+					return new Good(type,a);
+				}
+			}
 			return null;
 		}
 	}
 	
 	public void pushGood(Good g) {
+		if (g==null) return;
+		
 		Good ges = null;
 		
 		for (Good go : this.goods) {
