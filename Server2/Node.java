@@ -17,4 +17,17 @@ public class Node {
 		System.out.println("WARNING: Node " + name + " does not exist!");
 		return null;
 	}
+	
+	public Graph.Dir getNeighborDirection(Edge edge) {
+		int dir = -1;
+		
+		for (int i = 0; i < 4; i++) {
+			if (this.edges[i] == edge) {
+				dir = i;
+			}
+		}
+		if (dir == -1) throw new IllegalArgumentException("HELP!!!! NO WAY!!!");
+		
+		return Graph.Dir.values()[dir];
+	}
 }
