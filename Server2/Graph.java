@@ -42,7 +42,7 @@ public class Graph {
 	}
 	
 	public static char getTurnDirection(Graph.Dir fromdir, Graph.Dir todir) {
-		int value = todir.ordinal()-fromdir.aordinal()-2;
+		int value = todir.ordinal()-fromdir.ordinal()-2;
 		
 		switch (value) {
 			case -2: return 't';
