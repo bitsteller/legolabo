@@ -24,61 +24,61 @@ public class Transporter implements Runnable {
 
 	public void run() {
 		while (true) {
-			try {
-				while (jobq.size()>0) {
-					Job job = jobq.get(0);
+			while (jobq.size()>0) {
+				Job job = jobq.get(0);
+				
+				System.out.println(name + ": starting with job " + job.id + "...");
+				job.state = Job.State.WORKING;
+				job.printState();
+				
+				try {
+					while (job.pendingEdges.size()>0) {
+						Edge way = job.pendingEdges.get(0);
+						
+						Graph.Dir todir = position.getEdgeDirection(way);
+						char cmd = Graph.getTurnDirection(direction, todir);
 					
-					System.out.println(name + ": starting with job " + job.id + "...");
-					job.state = Job.State.WORKING;
+						sendCommand(cmd);
+						waitForMessage('k');
+						System.out.println(name + ": command finished (" + cmd + ")...");
+				
+						this.position = way.to;
+						this.direction = way.to.getEdgeDirection(way);
+				
+						this.printPosition();
+				
+						job.pendingEdges.remove(way);
+					}
+					
+					System.out.println(name + ": finished job ID" + job.id + ".");
+					job.state = Job.State.FINISHED;
 					job.printState();
-					
-					try {
-						while (job.pendingEdges.size()>0) {
-							Edge way = job.pendingEdges.get(0);
-					
-							Graph.Dir todir = position.getEdgeDirection(way);
-							char cmd = Graph.getTurnDirection(direction, todir);
-						
-							sendCommand(cmd);
-							waitForMessage('k');
-							System.out.println(name + ": command finished (" + cmd + ")...");
-					
-							this.position = way.to;
-							this.direction = way.to.getEdgeDirection(way);
-					
-							this.printPosition();
-					
-							job.pendingEdges.remove(way);
-						}
-						
-						System.out.println(name + ": finished job ID" + job.id + ".");
-						job.state = Job.State.FINISHED;
-						job.printState();
-					
-						jobq.remove(job);
-					
-						Thread.yield();
-					}
-					catch (Exception e) {
-						System.out.println(name + ": job ID" + job.id + " failed with exception " + e.toString() +". Aborting.");
-						job.state = Job.State.ABORTED;
-						job.printState();
-						jobq.remove(job);
-					}
+				
+					jobq.remove(job);
 				
 					Thread.yield();
-					Thread.sleep(1000);
-					Thread.yield();
+				}
+				catch (Exception e) {
+					System.out.println(name + ": job ID" + job.id + " failed with exception " + e.toString() +". Aborting.");
+					job.state = Job.State.ABORTED;
+					job.printState();
+					jobq.remove(job);
 				}
 			}
+			
+			try {
+				Thread.yield();
+				Thread.sleep(1000);
+				Thread.yield();
+			}
 			catch (Exception e) {
-				//System.out.println(e.getMessage());
+			
 			}
 		}
 	}
 	
 	public void enqueueJob(Job job) throws Exception {
-		System.out.println(name + ": endquened job " + job.id + "...");
+		System.out.println(name + ": endqued job " + job.id + "...");
 		this.jobq.add(job);
 	}
 	
@@ -110,7 +110,7 @@ public class Transporter implements Runnable {
 		this.direction = dir;
 	}
 	
-	public void printPosition() {
+	public void printPosition() throws Exception {
 		char[] pos = this.position.name.toCharArray();
 		sendCommand('#');
 		for(char p : pos) {
