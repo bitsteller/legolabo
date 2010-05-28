@@ -62,6 +62,8 @@ public class Transporter implements Runnable {
 					job.printState();
 				
 					jobq.remove(job);
+					
+					job.to.pushGood(job.good);
 				
 					Thread.yield();
 				}
@@ -137,6 +139,16 @@ public class Transporter implements Runnable {
 		}
 		return null;
 	}
-	
+
+	public static int getMaxLoad(Good.Goods type) {
+		switch (type) {
+			case HOLZ: return 20;
+			case KOHLE: return 30;
+			case EISEN: return 30;
+			case STAHL: return 15;
+			case WAREN: return 25;
+		}
+		return 42;
+	}
 
 }

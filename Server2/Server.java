@@ -60,9 +60,8 @@ public class Server {
 							Good good = null;
 							int goodnumber = Integer.parseInt(JOptionPane.showInputDialog("Enter good type number:"));
 							if (goodnumber != -1) {
-								String amount = JOptionPane.showInputDialog("Enter amount:");
-								int amt = Integer.parseInt(amount);
-								good = new Good(Good.Goods.values()[goodnumber],amt);;
+								Good.Goods g = Good.Goods.values()[goodnumber];
+								good = t.position.pullGood(g,Transporter.getMaxLoad(g));
 							}
 							else {
 								good = null;

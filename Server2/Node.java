@@ -38,6 +38,27 @@ public class Node {
 		}
 		else {
 			//Aus Lager nehmen
+			return null;
 		}
+	}
+	
+	public void pushGood(Good g) {
+		Good ges = null;
+		
+		for (Good go : this.goods) {
+			if (go.type == g.type) {
+				ges = go;
+				break;
+			}
+		}
+		
+		if (ges == null) {
+			ges = new Good(g.type, 0);
+			this.goods.add(ges);
+		}
+		
+		ges.amount += g.amount;
+		
+		System.out.println("Knoten " + name + ": " + ges.amount + " Einheiten " + ges.type.toString() + " gelagert.");
 	}
 }

@@ -11,3 +11,4 @@ public class Good {
 		this.amount = amount;
 	}
 }
+                                                                      
