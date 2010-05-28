@@ -103,6 +103,12 @@ public class Transporter implements Runnable {
 	}
 	
 	public void printPosition() {
+		char[] pos = this.position.name.toCharArray();
+		sendCommand('#');
+		for(char p : pos) {
+			sendCommand(p);
+		}
+		sendCommand('#');
 		System.out.println(this.name + ": is at " + this.position.name + this.direction.toString());
 	}
 	
