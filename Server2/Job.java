@@ -10,11 +10,13 @@ public class Job {
 	public ArrayList<Edge> pendingEdges;
 	public State state;
 	public int id;
+	public Good good;
 	
-	public Job(Node from, ArrayList<Edge> way, Node to) {
+	public Job(Node from, ArrayList<Edge> way, Node to, Good load) {
 		this.from = from;
 		this.to = to;
 		this.pendingEdges = way;
+		this.good = load;
 		
 		this.id = jobcount;
 		this.state = Job.State.PENDING;

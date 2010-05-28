@@ -42,8 +42,15 @@ public class Transporter implements Runnable {
 						waitForMessage('k');
 						System.out.println(name + ": command finished (" + cmd + ")...");
 				
-						this.position = way.to;
-						this.direction = way.to.getEdgeDirection(way);
+						if (this.position == way.from) {
+							this.position = way.to;
+							this.direction = way.to.getEdgeDirection(way);
+						}
+						else {
+							this.position = way.from;
+							this.direction = way.from.getEdgeDirection(way);
+						}
+
 				
 						this.printPosition();
 				
@@ -116,6 +123,8 @@ public class Transporter implements Runnable {
 		for(char p : pos) {
 			sendCommand(p);
 		}
+		sendCommand('-');
+		sendCommand(this.direction.toString().toCharArray()[0]);
 		sendCommand('#');
 		System.out.println(this.name + ": is at " + this.position.name + this.direction.toString());
 	}

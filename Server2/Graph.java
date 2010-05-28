@@ -42,7 +42,8 @@ public class Graph {
 		Graph.addNode("KOHLE");
 		Graph.addNode("STADT");
 		Graph.addNode("FABRIK");
-		Graph.addNode("WALD");
+		Graph.addNode("HOLZ");
+		
 		
 		Graph.addEdge("A", Graph.Dir.E, "B", Graph.Dir.W);
 		Graph.addEdge("A", Graph.Dir.W, "FABRIK", Graph.Dir.E);

@@ -2,7 +2,8 @@ import java.util.*;
 
 public class Node {
 	public String name = "";
-	public Edge[] edges = new Edge[4];;
+	public Edge[] edges = new Edge[4];
+	public ArrayList<Good> goods = new ArrayList<Good>();
 	
 	public Node(String name) {
 		this.name = name;
@@ -29,5 +30,14 @@ public class Node {
 		if (dir == -1) throw new IllegalArgumentException("HELP!!!! NO WAY!!!");
 		
 		return Graph.Dir.values()[dir];
+	}
+	
+	public Good pullGood(Good.Goods type, int amount) {
+		if (type == Good.Goods.EISEN || type == Good.Goods.KOHLE) {
+			return new Good(type,amount);
+		}
+		else {
+			//Aus Lager nehmen
+		}
 	}
 }

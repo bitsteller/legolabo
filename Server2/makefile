@@ -1,4 +1,4 @@
-run: Server.class Transporter.class Connections.class Graph.class Edge.class Node.class
+run: Server.class Transporter.class Connections.class Graph.class Edge.class Node.class Good.class
 	java -cp "/home/nils/lejos_nxj/lib/pccomm.jar:/home/nils/lejos_nxj/3rdparty/lib/bluecove.jar:/home/nils/lejos_nxj/3rdparty/lib/bluecove-gpl.jar:." Server
 
 .SUFFIXES: .java .class
