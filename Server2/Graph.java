@@ -45,6 +45,22 @@ public class Graph {
 		Graph.addNode("WALD");
 		
 		Graph.addEdge("A", Graph.Dir.E, "B", Graph.Dir.W);
+		Graph.addEdge("A", Graph.Dir.W, "FABRIK", Graph.Dir.E);
+		Graph.addEdge("A", Graph.Dir.S, "G", Graph.Dir.N);
+		Graph.addEdge("G", Graph.Dir.E, "STADT", Graph.Dir.W);
+		Graph.addEdge("G", Graph.Dir.S, "C", Graph.Dir.N);
+		Graph.addEdge("C", Graph.Dir.W, "KOHLE", Graph.Dir.E);
+		Graph.addEdge("C", Graph.Dir.S, "E", Graph.Dir.W);
+		Graph.addEdge("C", Graph.Dir.E, "D", Graph.Dir.W);
+		Graph.addEdge("D", Graph.Dir.N, "H", Graph.Dir.W);
+		Graph.addEdge("D", Graph.Dir.S, "E", Graph.Dir.N);
+		Graph.addEdge("E", Graph.Dir.S, "STAHL", Graph.Dir.N);
+		Graph.addEdge("E", Graph.Dir.E, "F", Graph.Dir.W);
+		Graph.addEdge("F", Graph.Dir.N, "H", Graph.Dir.S);
+		Graph.addEdge("F", Graph.Dir.E, "HOLZ", Graph.Dir.W);
+		Graph.addEdge("H", Graph.Dir.E, "EISEN", Graph.Dir.W);
+
+		/*Graph.addEdge("A", Graph.Dir.E, "B", Graph.Dir.W);
 		Graph.addEdge("A", Graph.Dir.S, "C", Graph.Dir.N);
 		Graph.addEdge("B", Graph.Dir.S, "D", Graph.Dir.N);
 		Graph.addEdge("C", Graph.Dir.E, "G", Graph.Dir.W);
@@ -59,7 +75,7 @@ public class Graph {
 		Graph.addEdge("STAHL", Graph.Dir.E, "C", Graph.Dir.W);
 		Graph.addEdge("STADT", Graph.Dir.W, "D", Graph.Dir.E);
 		Graph.addEdge("FABRIK", Graph.Dir.W, "F", Graph.Dir.E);
-		Graph.addEdge("WALD", Graph.Dir.N, "E", Graph.Dir.S);
+		Graph.addEdge("WALD", Graph.Dir.N, "E", Graph.Dir.S);*/
 	}
 	
 	public static char getTurnDirection(Graph.Dir fromdir, Graph.Dir todir) {
