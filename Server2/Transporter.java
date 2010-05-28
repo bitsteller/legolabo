@@ -25,14 +25,14 @@ public class Transporter implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				while (jobq.get(0) != null) {
+				while (jobq.size()>0) {
 					Job job = jobq.get(0);
 					
 					System.out.println(name + ": starting with job " + job.id + "...");
 					job.state = Job.State.WORKING;
 					job.printState();
 					
-					while (job.pendingEdges.get(0) != null) {		
+					while (job.pendingEdges.size()>0) {		
 						Edge way = job.pendingEdges.get(0);
 						
 						Graph.Dir todir = position.getEdgeDirection(way);
@@ -47,12 +47,10 @@ public class Transporter implements Runnable {
 						
 						this.printPosition();
 						
-						job.pendingEdges.remove(0);
-						
-						Thread.yield();
+						job.pendingEdges.remove(way);
 					}
 
-					System.out.println(name + ": finished " + job.id + "...");
+					System.out.println(name + ": finished job ID" + job.id + ".");
 					job.state = Job.State.FINISHED;
 					job.printState();
 					
@@ -60,7 +58,6 @@ public class Transporter implements Runnable {
 					
 					Thread.yield();
 				}
-				System.out.println(name + ": ready.");
 				
 				Thread.yield();
 				Thread.sleep(1000);
