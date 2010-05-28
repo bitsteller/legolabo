@@ -47,9 +47,9 @@ public class Graph {
 		Graph.addEdge("A", Graph.Dir.E, "B", Graph.Dir.W);
 		Graph.addEdge("A", Graph.Dir.W, "FABRIK", Graph.Dir.E);
 		Graph.addEdge("A", Graph.Dir.S, "G", Graph.Dir.N);
-		Graph.addEdge("G", Graph.Dir.E, "STADT", Graph.Dir.W);
+		Graph.addEdge("G", Graph.Dir.E, "STADT", Graph.Dir.N);
 		Graph.addEdge("G", Graph.Dir.S, "C", Graph.Dir.N);
-		Graph.addEdge("C", Graph.Dir.W, "KOHLE", Graph.Dir.E);
+		Graph.addEdge("C", Graph.Dir.W, "KOHLE", Graph.Dir.N);
 		Graph.addEdge("C", Graph.Dir.S, "E", Graph.Dir.W);
 		Graph.addEdge("C", Graph.Dir.E, "D", Graph.Dir.W);
 		Graph.addEdge("D", Graph.Dir.N, "H", Graph.Dir.W);
