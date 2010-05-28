@@ -23,7 +23,7 @@ public class Linie {
 					}
 					if (Button.ENTER.isPressed()){
 						System.out.println("Geradeaus fahren...");
-						Drive.reverse();
+						Drive.turn(0);
 						System.out.println("Geradeaus gefahren!");
 						break;
 					}
