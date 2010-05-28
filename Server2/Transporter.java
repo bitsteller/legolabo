@@ -91,9 +91,15 @@ public class Transporter implements Runnable {
 		this.jobq.add(job);
 	}
 	
-	private void sendCommand(char cmd) throws Exception {
+	public void sendCommand(char cmd) throws Exception {
 		System.out.println(name + ": sending command(" + cmd + ")...");
 		out.writeChar(cmd);
+		out.flush();
+	}
+	
+	public void sendCommands(String cmd) throws Exception {
+		System.out.println(name + ": sending command(" + cmd + ")...");
+		out.writeChars(cmd);
 		out.flush();
 	}
 	
@@ -114,9 +120,11 @@ public class Transporter implements Runnable {
 		System.out.println(this.name + ": successfully disconnected.");
 	}
 	
-	public void setPosition(Node node, Graph.Dir dir) {
+	public void setPosition(Node node, Graph.Dir dir) throws Exception {
 		this.position = node;
 		this.direction = dir;
+		
+		this.printPosition();
 	}
 	
 	public void printPosition() throws Exception {

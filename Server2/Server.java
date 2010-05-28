@@ -62,6 +62,12 @@ public class Server {
 							if (goodnumber != -1) {
 								Good.Goods g = Good.Goods.values()[goodnumber];
 								good = t.position.pullGood(g,Transporter.getMaxLoad(g));
+								try {
+									t.sendCommands("#" + good.amount + " " + good.type.toString() + "#");
+								}
+								catch (Exception e)
+								{
+								}
 							}
 							else {
 								good = null;
