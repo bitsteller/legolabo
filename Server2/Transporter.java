@@ -45,9 +45,9 @@ public class Transporter implements Runnable {
 						this.position = way.to;
 						this.direction = way.to.getEdgeDirection(way);
 						
-						job.pendingEdges.remove(0);
+						this.printPosition();
 						
-
+						job.pendingEdges.remove(0);
 						
 						Thread.yield();
 					}
@@ -56,12 +56,14 @@ public class Transporter implements Runnable {
 					job.state = Job.State.FINISHED;
 					job.printState();
 					
+					jobq.remove(job);
+					
 					Thread.yield();
 				}
 				System.out.println(name + ": ready.");
 				
 				Thread.yield();
-				Thread.sleep(500);
+				Thread.sleep(1000);
 				Thread.yield();
 			}
 			catch (Exception e) {
@@ -83,8 +85,10 @@ public class Transporter implements Runnable {
 	
 	public void waitForMessage(char msg) throws Exception {
 		char ch = in.readChar();
+		System.out.println(name + ": received (" + ch + ")...");
 	 	while(ch != msg) {
 			ch = in.readChar();
+			System.out.println(name + ": received (" + ch + ")...");
 		}
 		return;
 	}
@@ -99,6 +103,10 @@ public class Transporter implements Runnable {
 	public void setPosition(Node node, Graph.Dir dir) {
 		this.position = node;
 		this.direction = dir;
+	}
+	
+	public void printPosition() {
+		System.out.println(this.name + ": is at " + this.position.name + this.direction.toString());
 	}
 	
 	public static Transporter getByName(String name) {

@@ -49,8 +49,11 @@ public class Server {
 							Node n = null;
 							while (!nodename.equals("return")) {
 								n = Node.getByName(nodename);
-								way.add(Edge.getByNodes(l,n));
+								System.out.println("Searching way:" + l.name + " to " + n.name);
+								Edge e = Edge.getByNodes(l,n);
+								way.add(e);
 								l = n;
+								nodename = JOptionPane.showInputDialog("Enter node (return when complete):");
 							}
 							to = n;
 							
@@ -59,7 +62,7 @@ public class Server {
 						}
 						catch (Exception e)
 						{
-							
+							System.out.println("ERROR: Job not added: " + e.getMessage());
 						}
 					}
 					else if (command.equals("set")) {

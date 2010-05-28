@@ -11,7 +11,7 @@ public class Connections implements Runnable {
 				connectTransporters();
 
 				Thread.yield();
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 				Thread.yield();
 			}
 			catch (Exception e) {

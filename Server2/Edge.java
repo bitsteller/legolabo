@@ -10,11 +10,15 @@ public class Edge {
 	}
 	
 	public static Edge getByNodes(Node a, Node b) { //FIXME: Parallele Kanten!
-		for (Edge e:a.edges) {
-			if ((e.to == a && e.from == b) || (e.from== a && e.to == b)) return e;
+		for (int i = 0; i<4; i++) {
+			Edge e = a.edges[i];
+			if (e != null) {
+				if ((e.from == a && e.to == b) || (e.from == b && e.to == a)) return e;
+			}
 		}
 		
-		throw new IllegalArgumentException("HELP!!!! NO EDGE!!!");
+		System.out.println("HELP!!!! NO EDGE!!!");
+		return null;
 	}
 
 }

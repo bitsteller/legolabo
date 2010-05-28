@@ -33,24 +33,27 @@ public class Graph {
 		Graph.addNode("B");
 		Graph.addNode("C");
 		Graph.addNode("D");
+		Graph.addNode("G");
 		
 		Graph.addEdge("A", Graph.Dir.E, "B", Graph.Dir.W);
-		Graph.addEdge("C", Graph.Dir.E, "D", Graph.Dir.W);
-		Graph.addEdge("B", Graph.Dir.S, "D", Graph.Dir.N);
 		Graph.addEdge("A", Graph.Dir.S, "C", Graph.Dir.N);
-		
+		Graph.addEdge("B", Graph.Dir.S, "D", Graph.Dir.N);
+		Graph.addEdge("C", Graph.Dir.E, "G", Graph.Dir.W);
+		Graph.addEdge("G", Graph.Dir.E, "D", Graph.Dir.W);
 	}
 	
 	public static char getTurnDirection(Graph.Dir fromdir, Graph.Dir todir) {
-		int value = todir.ordinal()-fromdir.ordinal()-2;
+		int value = Math.abs((todir.ordinal()-fromdir.ordinal())%4);
 		
+		System.out.println("DEBUG turndir: " + fromdir.ordinal() +  "," + todir.ordinal() + "," + value);
 		switch (value) {
-			case -2: return 't';
-			case -1: return 'l';
-			case 0: return 's';
-			case 1: return 'r';
+			case 0: return 't';
+			case 1: return 'l';
+			case 2: return 's';
+			case 3: return 'r';
 		}
 		
+
 		return 42; //DEBUG
 	}
 }
