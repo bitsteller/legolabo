@@ -32,36 +32,44 @@ public class Transporter implements Runnable {
 					job.state = Job.State.WORKING;
 					job.printState();
 					
-					while (job.pendingEdges.size()>0) {		
-						Edge way = job.pendingEdges.get(0);
+					try {
+						while (job.pendingEdges.size()>0) {
+							Edge way = job.pendingEdges.get(0);
+					
+							Graph.Dir todir = position.getEdgeDirection(way);
+							char cmd = Graph.getTurnDirection(direction, todir);
 						
-						Graph.Dir todir = position.getEdgeDirection(way);
-						char cmd = Graph.getTurnDirection(direction, todir);
-							
-						sendCommand(cmd);
-						waitForMessage('k');
-						System.out.println(name + ": command finished (" + cmd + ")...");
+							sendCommand(cmd);
+							waitForMessage('k');
+							System.out.println(name + ": command finished (" + cmd + ")...");
+					
+							this.position = way.to;
+							this.direction = way.to.getEdgeDirection(way);
+					
+							this.printPosition();
+					
+							job.pendingEdges.remove(way);
+						}
 						
-						this.position = way.to;
-						this.direction = way.to.getEdgeDirection(way);
-						
-						this.printPosition();
-						
-						job.pendingEdges.remove(way);
+						System.out.println(name + ": finished job ID" + job.id + ".");
+						job.state = Job.State.FINISHED;
+						job.printState();
+					
+						jobq.remove(job);
+					
+						Thread.yield();
 					}
-
-					System.out.println(name + ": finished job ID" + job.id + ".");
-					job.state = Job.State.FINISHED;
-					job.printState();
-					
-					jobq.remove(job);
-					
+					catch (Exception e) {
+						System.out.println(name + ": job ID" + job.id + " failed with exception " + e.toString() +". Aborting.");
+						job.state = Job.State.ABORTED;
+						job.printState();
+						jobq.remove(job);
+					}
+				
+					Thread.yield();
+					Thread.sleep(1000);
 					Thread.yield();
 				}
-				
-				Thread.yield();
-				Thread.sleep(1000);
-				Thread.yield();
 			}
 			catch (Exception e) {
 				//System.out.println(e.getMessage());
