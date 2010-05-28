@@ -27,11 +27,13 @@ public class Transporter implements Runnable {
 					
 					if (cmd == '.') {
 						this.disconnect();
+						cmdq.remove(0);
 					}
 					else {
 						sendCommand(cmd);
 						System.out.println(name + ": busy(" + cmd + ")...");
 						waitForMessage('k');
+						System.out.println(name + ": finished (" + cmd + ")...");
 						cmdq.remove(0);
 					}
 					Thread.yield();
@@ -43,7 +45,7 @@ public class Transporter implements Runnable {
 				Thread.yield();
 			}
 			catch (Exception e) {
-				System.out.println(e.getMessage());
+				//System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -61,6 +63,7 @@ public class Transporter implements Runnable {
 	public void waitForMessage(char msg) throws Exception {
 		char ch = in.readChar();
 	 	while(ch != msg) {
+	 		System.out.println(name + ": received (" + ch + ").");
 			ch = in.readChar();
 		}
 		return;
@@ -69,8 +72,6 @@ public class Transporter implements Runnable {
 	public void disconnect() throws Exception {
 		System.out.println(this.name + ": sending shutdown request...");
 		sendCommand('.');
-		System.out.println(this.name + ": busy (shutting down)...");
-		waitForMessage('k');
 		Server.transporters.remove(this);
 		System.out.println(this.name + ": successfully disconnected.");
 	}

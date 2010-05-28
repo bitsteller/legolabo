@@ -20,7 +20,9 @@ public class Server {
 			if (name.equals("exit")) {
 				for (Transporter t: Server.transporters) {
 					t.disconnect();
-				}				
+				}
+				
+				thread.stop();
 				return;
 			}
 			else {
