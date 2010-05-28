@@ -30,24 +30,31 @@ public class Transporter implements Runnable {
 					
 					System.out.println(name + ": starting with job " + job.id + "...");
 					job.state = Job.State.WORKING;
+					job.printState();
 					
 					while (job.pendingEdges.get(0) != null) {		
 						Edge way = job.pendingEdges.get(0);
 						
-						Graph.Dir todir = position.getNeighborDirection(way);
+						Graph.Dir todir = position.getEdgeDirection(way);
 						char cmd = Graph.getTurnDirection(direction, todir);
 							
 						sendCommand(cmd);
-						System.out.println(name + ": command (" + cmd + ")...");
 						waitForMessage('k');
 						System.out.println(name + ": command finished (" + cmd + ")...");
+						
+						this.position = way.to;
+						this.direction = way.to.getEdgeDirection(way);
+						
 						job.pendingEdges.remove(0);
+						
+
 						
 						Thread.yield();
 					}
 
 					System.out.println(name + ": finished " + job.id + "...");
 					job.state = Job.State.FINISHED;
+					job.printState();
 					
 					Thread.yield();
 				}
@@ -58,7 +65,7 @@ public class Transporter implements Runnable {
 				Thread.yield();
 			}
 			catch (Exception e) {
-				System.out.println(e.getMessage());
+				//System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -85,8 +92,6 @@ public class Transporter implements Runnable {
 	public void disconnect() throws Exception {
 		System.out.println(this.name + ": sending shutdown request...");
 		sendCommand('.');
-		System.out.println(this.name + ": busy (shutting down)...");
-		waitForMessage('k');
 		Server.transporters.remove(this);
 		System.out.println(this.name + ": successfully disconnected.");
 	}

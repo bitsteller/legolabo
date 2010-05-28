@@ -28,7 +28,7 @@ public class Drive {
 				Motor.A.stop();
 				Motor.B.stop();
 				Motor.C.forward();
-				Sound.setVolume(100);
+				Sound.setVolume(50);
 				playTune("C",500);
 				return;
 			}
@@ -118,7 +118,7 @@ public class Drive {
 	
 	public static void kalibrieren(ColorSensor c1, ColorSensor c2) {
 
-		Sound.setVolume(100);
+		Sound.setVolume(50);
 		playTune("C",500);
 
 		// BlackBalance
@@ -140,7 +140,7 @@ public class Drive {
 		c2.initWhiteBalance();
 		
 		LCD.clear();
-		Sound.setVolume(100);
+		Sound.setVolume(50);
 		playTune("A",500);
 	}
 	
