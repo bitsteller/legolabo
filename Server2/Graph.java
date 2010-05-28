@@ -40,4 +40,17 @@ public class Graph {
 		Graph.addEdge("A", Graph.Dir.S, "C", Graph.Dir.N);
 		
 	}
+	
+	public static char getTurnDirection(Graph.Dir fromdir, Graph.Dir todir) {
+		int value = todir.ordinal()-fromdir.aordinal()-2;
+		
+		switch (value) {
+			case -2: return 't';
+			case -1: return 'l';
+			case 0: return 's';
+			case 1: return 'r';
+		}
+		
+		return 42; //DEBUG
+	}
 }
